@@ -1,0 +1,92 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node* next;
+};
+void printList(node* n)
+{
+    while (n != NULL) {
+        cout << n->data << " ";
+        n = n->next;
+    }
+}
+
+int main()
+{
+
+
+    node* head=new node();
+    node* second= new node();
+    node* third = new node();
+    node* fourth = new node();
+    node* tail=new node();
+
+    head->data=1;
+    head->next=second;
+
+    second-> data=2;
+    second-> next=third;
+
+    third-> data =3;
+    third->next=fourth;
+
+    fourth->data = 4;
+    fourth->next=tail;
+
+    tail->data = 5;
+    tail->next=NULL;
+
+    printList(head);
+    node* header=head;
+
+    cout<<"\n1- delete head 2-delete tail 3-delete certain element\n";
+    int n;
+    cin>>n;
+    if(n==1)
+    {
+        node* temp=second;
+        delete header;
+        header=temp;
+        printList(header);
+    }
+    else if(n==2)
+    {
+        node* temp=head;
+        node* temp1=temp;
+        while(temp->next!=tail)
+        {
+            temp1=temp;
+            temp=temp->next;
+        }
+        delete temp;
+        temp->next=NULL;
+        temp1=temp;
+        printList(head);
+
+
+    }
+    else
+    {
+        cout<<"enter the element you want to delete\n";
+        int x;
+        cin>>x;
+        node* current= head;
+        node* previous=current;
+        while(current->data!=x)
+        {
+            previous = current;
+            current=current->next;
+        }
+        //cout<<current->data;
+
+        previous->next=current->next;
+        delete current;
+        printList(head);
+    }
+
+return 0;
+}
